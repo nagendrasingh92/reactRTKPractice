@@ -1,0 +1,61 @@
+.todoAppWrap {
+    width: 500px;
+    margin: 20px auto;
+
+    .css-g28sfz-MuiListItem-root>.MuiListItemButton-root {
+        padding-right: 0px;
+    }
+
+    .css-1mcnwpj-MuiList-root {
+        max-width: none;
+    }
+
+    .todoTitle {
+        text-align: center;
+    }
+
+    .taskButton {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .taskInput {
+        background-color: #eee;
+        border-radius: 6px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        
+
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        .taskButton {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .taskList {
+        background-color: #eee;
+        margin-top: 20px;
+        border-radius: 6px;
+        padding: 20px;
+    }
+    .taskOperation{
+        background-color: #eee;
+        margin-top: 20px;
+        border-radius: 6px;
+        padding: 20px;
+        justify-content: space-between;
+        display: flex;
+        .operationButton{
+            background-color: green;
+        }
+    }
+
+}
