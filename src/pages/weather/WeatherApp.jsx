@@ -1,8 +1,8 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useState, useEffect } from 'react';
-import fetchWeatherAction from "../redux/slices/weather/weatherThunk";
+import { useState } from 'react';
+import fetchWeatherAction from "../../redux/slices/weather/weatherThunk";
 import './weatherApp.scss';
 
 
@@ -13,13 +13,20 @@ function WeatherApp() {
     const handleCityName = (value) => {
         setCityName(value);
     }
-    useEffect(()=>{
-        dispatch(fetchWeatherAction('jaipur'));
-    }, []);
 
-    const state = useSelector(state => state);
-    const {weather, loading, error } = state;
-    console.log('state', state)
+
+    const weatherData = useSelector(state => state);
+    const { extraReducers } = weatherData;
+    const { weather } = extraReducers;
+
+    console.log('state', extraReducers)
+
+    const handleWeatherUpdate = () => {
+        dispatch(fetchWeatherAction(cityName))
+        setCityName('');
+    }
+
+
 
 
     // const handleWeather = async () => {
@@ -41,9 +48,9 @@ function WeatherApp() {
             <div className='weatherInputWrap'>
                 <TextField id="outlined-basic" label="Enter City Name" variant="outlined" value={cityName} onChange={(event) => handleCityName(event.target.value)} />
 
-                <Button variant="contained" onClick={() => dispatch(fetchWeatherAction(cityName))}>Search</Button>
+                <Button variant="contained" onClick={() => handleWeatherUpdate()}>Search</Button>
             </div>
-            {weather &&
+            { weather &&
                 <div className='weatherDisplay'>
                     <div className='weatherEle'>City Name :-  {weather.name}</div>
                     <div className='weatherEle'>Temperature :-  {weather.main.temp}°C</div>
@@ -52,6 +59,7 @@ function WeatherApp() {
                     </div>
                 </div>
             }
+                
         </div>
     );
 }
